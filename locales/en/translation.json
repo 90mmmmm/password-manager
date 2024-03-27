@@ -2,12 +2,12 @@
   "authentication": {
     "form": {
       "heading": "Secure Access to Your Passwords",
-      "subheading": "Safeguarding your passwords has never been easier. Just enter your email and master password to access your encrypted vault. Your existing encrypted file will be unlocked, or a new one will be created if it doesn't exist.",
+      "subheading": "Safeguarding your passwords has never been easier. Just connect using Internet Identity to access your encrypted vault. Your existing encrypted file will be unlocked, or a new one will be created if it doesn't exist.",
       "email_label": "Email",
       "email_placeholder": "Enter your email",
       "password_label": "Password",
       "password_placeholder": "Enter your password",
-      "continue_button": "Continue",
+      "continue_button": "Connect with Internet Identity",
       "error_title": "Oops! Something went wrong.",
       "error_description": "An error occurred while attempting to access your password vault or create a new encrypted file."
     }

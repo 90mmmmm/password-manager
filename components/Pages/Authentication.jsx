@@ -1,6 +1,4 @@
-import { useContext, useState } from "react";
-
-import { signIn } from "@junobuild/core";
+import { InternetIdentityProvider, signIn } from "@junobuild/core-peer";
 
 import { Button } from "@/components/ui/button";
 
@@ -27,7 +25,12 @@ function Authentication() {
           </p>
         </div>
   
-        <Button className="w-full"  onClick={signIn}>
+        <Button className="w-full"  onClick={async () => await signIn({ 
+          provider:  new InternetIdentityProvider({
+            domain: "ic0.app",
+          })
+        })}
+        >
             <span className="ml-2">
               {t("authentication.form.continue_button")}
             </span>

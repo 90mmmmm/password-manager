@@ -1,6 +1,8 @@
 import { useState, useContext } from "react";
 
-import { PasswordsContext, AuthContext } from "@/app/page";
+import { AuthContext } from "@/app/page";
+
+import { PasswordsContext } from "./PasswordDialog";
 
 import {
   Dialog,
@@ -23,8 +25,8 @@ function DeletePasswordDialog({ passwordId }) {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  const { user } = useContext(AuthContext);
   const { passwords, setPasswords } = useContext(PasswordsContext);
-  const { auth } = useContext(AuthContext);
 
   const deletePassword = async (e) => {
     try {
@@ -38,8 +40,7 @@ function DeletePasswordDialog({ passwordId }) {
 
       const newPasswordsState = await savePasswords(
         newPasswords,
-        auth.email,
-        auth.password
+        user
       );
 
       if (newPasswordsState) {

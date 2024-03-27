@@ -2,7 +2,7 @@
 
 import { useState, createContext, useContext, useEffect } from "react";
 
-import { PasswordsContext, AuthContext } from "@/app/page";
+import { AuthContext } from "@/app/page";
 import { PasswordDialogContext } from "@/components/Pages/Dashboard";
 
 import PasswordForm from "@/components/Forms/PasswordForm";
@@ -30,11 +30,14 @@ import { useTranslation } from "react-i18next";
 
 export const NewPasswordContext = createContext();
 
+export const PasswordsContext = createContext();
+
 function PasswordDialog() {
   const [newPassword, setNewPassword] = useState();
 
-  const { auth } = useContext(AuthContext);
-  const { passwords, setPasswords } = useContext(PasswordsContext);
+  const [passwords, setPasswords] = useState([]);
+
+  const { user } = useContext(AuthContext);
 
   const { passwordDialog, setPasswordDialog } = useContext(
     PasswordDialogContext
@@ -92,52 +95,43 @@ function PasswordDialog() {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-
       setPasswordDialog({ ...passwordDialog, isLoading: true });
-
+  
+      // Include passwordType in the passwordData object
+      const passwordData = {
+        ...newPassword,
+        passwordType: newPassword.passwordType // Assuming passwordType is captured in newPassword
+      };
+  
       if (passwordDialog.isUpdating) {
-        const updatedPasswordsState = await updatePassword(
-          passwords,
-          passwordDialog.updatePassword,
-          newPassword,
-          auth
-        );
-
+        const updatedPasswordsState = await updatePassword(passwords, passwordDialog.updatePassword, passwordData, auth);
         if (updatedPasswordsState) {
           setPasswords(updatedPasswordsState);
-
           setNewPassword(passwordDialog.updatePassword);
         }
       } else {
-        const newPasswordsState = await addNewPassword(
-          passwords,
-          newPassword,
-          auth
-        );
-
+        const newPasswordsState = await addNewPassword(passwords, passwordData, auth);
         if (newPasswordsState) {
           setPasswords(newPasswordsState);
-
           setPasswordDialog({ ...passwordDialog, step: 1 });
-
           setNewPassword(passwordTypeStates.webLogin);
         }
       }
     } catch (error) {
       console.log(error);
-
-      return null;
     } finally {
       setPasswordDialog({ ...passwordDialog, isOpen: false, isLoading: false });
     }
   };
-
-  const { t } = useTranslation();
+  
 
   return (
     <NewPasswordContext.Provider
       value={{ newPassword: newPassword, setNewPassword: setNewPassword }}
     >
+      <PasswordsContext.Provider
+        value={{ passwords: passwords, setPasswords: setPasswords }}
+      >
       <Dialog open={passwordDialog.isOpen}>
         <DialogTrigger asChild>
           <Button
@@ -201,6 +195,7 @@ function PasswordDialog() {
           </form>
         </DialogContent>
       </Dialog>
+      </PasswordsContext.Provider>
     </NewPasswordContext.Provider>
   );
 }

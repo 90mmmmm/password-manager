@@ -2,7 +2,7 @@
 
 import { useState, createContext, useContext, useEffect } from "react";
 
-import { AuthContext } from "@/app/page";
+import {  PasswordsContext, AuthContext } from "@/app/page";
 import { PasswordDialogContext } from "@/components/Pages/Dashboard";
 
 import PasswordForm from "@/components/Forms/PasswordForm";
@@ -30,21 +30,11 @@ import { useTranslation } from "react-i18next";
 
 export const NewPasswordContext = createContext();
 
-export const PasswordsContext = createContext();
-
-export const FilterContext = createContext();
-
 function PasswordDialog() {
   const [newPassword, setNewPassword] = useState();
 
-  const [passwords, setPasswords] = useState([]);
-
-  const [filter, setFilter] = useState({
-    passwordType: "passwords",
-    filteredPasswords: passwords,
-  });
-
   const { user } = useContext(AuthContext);
+  const { passwords, setPasswords } = useContext(PasswordsContext);
 
   const { passwordDialog, setPasswordDialog } = useContext(
     PasswordDialogContext
@@ -138,12 +128,6 @@ function PasswordDialog() {
     <NewPasswordContext.Provider
       value={{ newPassword: newPassword, setNewPassword: setNewPassword }}
     >
-      <PasswordsContext.Provider
-        value={{ passwords: passwords, setPasswords: setPasswords }}
-      >
-         <FilterContext.Provider
-          value={{ filter: filter, setFilter: setFilter }}
-        >
       <Dialog open={passwordDialog.isOpen}>
         <DialogTrigger asChild>
           <Button
@@ -207,8 +191,6 @@ function PasswordDialog() {
           </form>
         </DialogContent>
       </Dialog>
-      </FilterContext.Provider>
-      </PasswordsContext.Provider>
     </NewPasswordContext.Provider>
   );
 }

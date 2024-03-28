@@ -1,6 +1,6 @@
 import { useContext } from "react";
 
-import { FilterContext } from "@/components/Dialogs/PasswordDialog";
+import { FilterContext } from "@/app/page";
 import { PasswordDialogContext } from "@/components/Pages/Dashboard";
 
 import DeletePasswordDialog from "@/components/Dialogs/DeletePasswordDialog";

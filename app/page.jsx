@@ -21,10 +21,10 @@ export default function Home() {
     initializeJuno();
 
     // Subscribe to authentication changes
-    const subscription = authSubscribe((user) => setUser(user));
+    const sub = authSubscribe((user) => setUser(user));
 
     return () => {
-      subscription(); // Clean up subscription
+      sub(); // Clean up subscription
     };
   }, []);
 

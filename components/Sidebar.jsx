@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 
-import { FilterContext, PasswordsContext } from "@/app/page";
+import { FilterContext, PasswordsContext } from "@/components/Dialogs/PasswordDialog";
 
 import { Button } from "@/components/ui/button";
 

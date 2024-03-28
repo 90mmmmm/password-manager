@@ -32,10 +32,17 @@ export const NewPasswordContext = createContext();
 
 export const PasswordsContext = createContext();
 
+export const FilterContext = createContext();
+
 function PasswordDialog() {
   const [newPassword, setNewPassword] = useState();
 
   const [passwords, setPasswords] = useState([]);
+
+  const [filter, setFilter] = useState({
+    passwordType: "passwords",
+    filteredPasswords: passwords,
+  });
 
   const { user } = useContext(AuthContext);
 

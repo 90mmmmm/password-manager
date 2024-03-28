@@ -111,13 +111,13 @@ function PasswordDialog() {
       };
   
       if (passwordDialog.isUpdating) {
-        const updatedPasswordsState = await updatePassword(passwords, passwordDialog.updatePassword, passwordData, auth);
+        const updatedPasswordsState = await updatePassword(passwords, passwordDialog.updatePassword, passwordData, user);
         if (updatedPasswordsState) {
           setPasswords(updatedPasswordsState);
           setNewPassword(passwordDialog.updatePassword);
         }
       } else {
-        const newPasswordsState = await addNewPassword(passwords, passwordData, auth);
+        const newPasswordsState = await addNewPassword(passwords, passwordData, user);
         if (newPasswordsState) {
           setPasswords(newPasswordsState);
           setPasswordDialog({ ...passwordDialog, step: 1 });
@@ -130,6 +130,8 @@ function PasswordDialog() {
       setPasswordDialog({ ...passwordDialog, isOpen: false, isLoading: false });
     }
   };
+
+  const { t } = useTranslation();
   
 
   return (
@@ -139,6 +141,9 @@ function PasswordDialog() {
       <PasswordsContext.Provider
         value={{ passwords: passwords, setPasswords: setPasswords }}
       >
+         <FilterContext.Provider
+          value={{ filter: filter, setFilter: setFilter }}
+        >
       <Dialog open={passwordDialog.isOpen}>
         <DialogTrigger asChild>
           <Button
@@ -202,6 +207,7 @@ function PasswordDialog() {
           </form>
         </DialogContent>
       </Dialog>
+      </FilterContext.Provider>
       </PasswordsContext.Provider>
     </NewPasswordContext.Provider>
   );

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 
-import { FilterContext } from "@/app/page";
+import { FilterContext } from "@/components/Dialogs/PasswordDialog";
 
 import { useTranslation } from "react-i18next";
 

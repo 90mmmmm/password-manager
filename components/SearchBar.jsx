@@ -1,8 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 
-import { FilterContext, PasswordsContext } from "@/app/page";
-
-import PasswordDialog from "@/components/Dialogs/PasswordDialog";
+import { FilterContext, PasswordsContext, PasswordDialog } from "@/components/Dialogs/PasswordDialog";
 
 import { Input } from "@/components/ui/input";
 

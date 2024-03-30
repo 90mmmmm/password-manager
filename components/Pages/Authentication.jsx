@@ -1,7 +1,7 @@
 import { InternetIdentityProvider, signIn } from "@junobuild/core-peer";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Button } from "@/components/ui/button";
-import { Lock } from "lucide-react";
+import { Loader2, Lock } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useToast } from "@/components/ui/use-toast";
 import { AuthContext } from "@/app/page";

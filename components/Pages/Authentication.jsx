@@ -1,5 +1,5 @@
 import { InternetIdentityProvider, signIn } from "@junobuild/core-peer";
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Loader2, Lock } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -28,11 +28,11 @@ function Authentication() {
             {t("authentication.form.subheading")}
           </p>
         </div>
-        <Button className="w-full" disabled={isLoading} onClick={ () => {async () => await signIn({ 
+        <Button className="w-full" disabled={isLoading} onClick={() => { async () => await signIn({ 
            provider:  new InternetIdentityProvider({
           domain: "ic0.app",
         })
-}); handleSubmit}}>
+}); handleSubmit(); }}>
           {isLoading && <Loader2 className="h-4 w-4 animate-spin" />}
           {!isLoading && (
             <span className="ml-2">

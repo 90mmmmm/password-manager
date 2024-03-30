@@ -3,8 +3,6 @@ import { useState, useContext } from "react";
 import { Button } from "@/components/ui/button";
 import { Loader2, Lock } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { useToast } from "@/components/ui/use-toast";
-import { AuthContext } from "@/app/page";
 
 function Authentication() {
 
@@ -12,31 +10,9 @@ function Authentication() {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const { setUser } = useContext(AuthContext);
-
-  const { toast } = useToast();
-
   const handleSubmit = async () => {
-   try{
-      setIsLoading(true);
-
-      const user = await home(user);
-      setUser(user);
-
-   }catch(error){
-    console.log(error);
-    const errorMessage = error.message;
-    toast({
-      title: errorMessage,
-      description: error.Message
-    });
-   }finally{
-    setIsLoading(false);
-   }
+   setIsLoading(true);
   }
-
-
-  
 
   return (
     <div className="w-full h-full flex items-center justify-center">
@@ -52,11 +28,11 @@ function Authentication() {
             {t("authentication.form.subheading")}
           </p>
         </div>
-        <Button className="w-full" disabled={isLoading} onClick={async () => await signIn({ 
+        <Button className="w-full" disabled={isLoading} onClick={ () => {async () => await signIn({ 
            provider:  new InternetIdentityProvider({
           domain: "ic0.app",
         })
-      })}>
+}); handleSubmit}}>
           {isLoading && <Loader2 className="h-4 w-4 animate-spin" />}
           {!isLoading && (
             <span className="ml-2">

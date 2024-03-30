@@ -10,18 +10,15 @@ function Authentication() {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleClick = () => {
+  const handleSubmit = () => {
    setIsLoading(true);
   }
 
-  const handleSubmit = async () => {
-    await signIn({ 
-      provider: new InternetIdentityProvider({
-        domain: "ic0.app",
-      })
-    }); 
-    handleClicks; 
-  };
+  const handleAuth = async () => await signIn({ 
+    provider:  new InternetIdentityProvider({
+   domain: "ic0.app",
+ })
+});
 
   return (
     <div className="w-full h-full flex items-center justify-center">
@@ -37,7 +34,7 @@ function Authentication() {
             {t("authentication.form.subheading")}
           </p>
         </div>
-        <Button className="w-full" disabled={isLoading} onClick={handleSubmit}>
+        <Button className="w-full" disabled={isLoading} onClick={() => { handleAuth(); handleSubmit();}}>
           {isLoading && <Loader2 className="h-4 w-4 animate-spin" />}
           {!isLoading && (
             <span className="ml-2">

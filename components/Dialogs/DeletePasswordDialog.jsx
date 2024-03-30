@@ -1,8 +1,6 @@
 import { useState, useContext } from "react";
 
-import { AuthContext } from "@/app/page";
-
-import { PasswordsContext } from "./PasswordDialog";
+import { AuthContext, PasswordsContext } from "@/app/page";
 
 import {
   Dialog,

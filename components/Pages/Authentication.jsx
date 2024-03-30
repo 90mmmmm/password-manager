@@ -20,7 +20,7 @@ function Authentication() {
         domain: "ic0.app",
       })
     }); 
-    handleClick(); 
+    handleClicks; 
   };
 
   return (

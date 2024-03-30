@@ -37,6 +37,11 @@ export default function Home() {
     };
   }, []);
 
+  // Disable SSR for this page
+Home.getInitialProps = () => {
+  return { data: null };
+};
+
   return (
     <AuthContext.Provider value={{ user }}>
        <PasswordsContext.Provider

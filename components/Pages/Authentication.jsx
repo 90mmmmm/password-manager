@@ -10,7 +10,7 @@ function Authentication() {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
    setIsLoading(true);
   }
 

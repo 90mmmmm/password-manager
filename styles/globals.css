@@ -101,3 +101,11 @@
     @apply overflow-auto whitespace-nowrap hide-scrollbar;
   }
 }
+
+.btn-log-out {
+  color: #dc2626 !important; /* This color should match the red color used for text */
+}
+
+.btn-log-out:hover {
+  color: #dc2626 !important; /* This color should match the red color used for text */
+}

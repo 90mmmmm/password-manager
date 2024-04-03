@@ -14,6 +14,7 @@ import {
   Wifi,
   Landmark,
   UserCircle2,
+  LogOut,
 } from "lucide-react";
 
 import { useTranslation } from "react-i18next";
@@ -92,6 +93,12 @@ function Sidebar() {
           value: "bankAccount",
           icon: <Landmark className="mr-2 h-4 w-4" />,
         },
+        logOut: {
+          name: t("dashboard.sidebar.categories_children.logOut"),
+          value: "logOut",
+          icon: <LogOut className="mr-2 h-4 w-4 text-red-600" />,
+          textClass: "btn-log-out", // Add this property
+        },
       },
     },
   };
@@ -111,7 +118,7 @@ function Sidebar() {
                   element.value === filter.passwordType ? "secondary" : "ghost"
                 }
                 size="sm"
-                className="w-full justify-start"
+                className={`w-full justify-start ${element.textClass}`}
                 onClick={(e) => {
                   e.preventDefault();
 

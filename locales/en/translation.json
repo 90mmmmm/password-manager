@@ -27,7 +27,8 @@
         "socialMediaAccounts": "Social Media Accounts",
         "emailAccounts": "Email Accounts",
         "wiFiPasswords": "WiFi Passwords",
-        "bankAccounts": "Bank Accounts"
+        "bankAccounts": "Bank Accounts",
+        "logOut": "Log Out"
       }
     },
     "header": {
